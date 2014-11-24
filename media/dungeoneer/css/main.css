@@ -1,0 +1,51 @@
+strong {ont-weight: 700;}
+
+.ability {display: inline-block; width: 32.7%; margin: .5em .3%; background:#efefef; vertical-align: top; font-size: .8em;}
+	.ability > table {width: 100%; font-size: .9em;}
+		.ability > table  tr {}
+		.ability > table  tr.dark {background-color:#DBDBDB}
+		.ability > table  tr.header  {background-color: red; color: #fff;}
+			.ability > table tr td {vertical-align: bottom; font-family: 'Lato', sans-serif; padding: .2em .4em; font-size: .9em;}
+			.ability > table tr.header > td {vertical-align: middle;}
+			.ability > table tr .name h2 {margin: 0; font-size:1.2em;}
+			.ability > table tr .level {text-align: right;}
+			.ability > table tr .flavour {font-family: 'Gentium Book Basic', serif; font-style: italic; font-size: 1em;}
+			.ability > table tr .keywords {}
+				.ability > table tr .keywords .recharge {}
+				.ability > table tr .keywords .separator {}
+				.ability > table tr .keywords ul {display: inline; list-style: none; padding: 0;}
+				.ability > table tr .keywords li {display: inline;}
+				.ability > table tr .keywords li:after {content: ", ";}
+				.ability > table tr .keywords li:last-child:after {content: "";}
+			.ability > table tr .book-location {text-align: right; color: #fff;} 
+				.ability > table tr .book-location {font-family: 'Gentium Book Basic', serif; font-style: italic;}
+				
+		.ability.at-will > table tr.header, .ability.at-will > table tr .book-location  {background-color: #008F00;}
+		.ability.encounter > table tr.header, .ability.encounter > table tr .book-location  {background-color: #941300;}
+		.ability.daily > table tr.header, .ability.daily > table tr .book-location  {background-color: #121212;}
+		
+
+
+@media only screen and (max-width: 768px) {
+	.ability {width: 49.35%; margin: .5em .3%;}
+}
+
+@media only screen and (max-width: 500px) {
+	.ability {width: 99.4%; margin: .5em .3%;}
+}
+
+		
+/*.ability {display: inline-block; width: 30%; margin: 1em 1.66%; background:#efefef;}
+	.ability > .inner {display: table; width: 100%;}
+		.ability > .inner > .row {display: table-row;}
+		.ability > .inner > .row:nth-child(even) {backgroun-color:#EBEBEB}
+		.ability > .inner > .row.header  {background-color: red; color: #fff;}
+			.ability > .inner > .row > div {display: table-cell; vertical-align: bottom; font-family: 'Lato', sans-serif; padding: .2em .4em;}
+			.ability > .inner > .row.header > div {vertical-align: middle;}
+			.ability > .inner > .row > .name h2 {margin: 0; font-size:1.2em;}
+			.ability > .inner > .row > .level {text-align: right;}
+			.ability > .inner > .row > .flavour {font-family: 'Gentium Book Basic', serif;}
+
+		.ability.at-will > .inner > .row.header  {background-color: #008F00;}
+		.ability.encounter > .inner > .row.header  {background-color: #941300;}
+		.ability.daily > .inner > .row.header  {background-color: #121212;}*/
