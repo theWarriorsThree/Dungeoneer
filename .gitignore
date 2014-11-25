@@ -1,4 +1,9 @@
 #project
+charactermanager/migrations/
+db.sqlite3
+dungeoneer/
+manage.py
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
