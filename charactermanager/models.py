@@ -1,6 +1,13 @@
 from django.db import models
 
 # Create your models here.
+
+class Campaign(models.Model):
+    name = models.CharField(max_length=64)
+    slug = models.SlugField(unique=True)
+    character = models.ManyToManyField("Character")
+    
+
 class Character(models.Model):
 	name = models.CharField(max_length=16)
 	abilities = models.ManyToManyField("Ability")
@@ -16,7 +23,6 @@ class Ability(models.Model):
         ('DAILY', 'Daily')
     )
     ACTION_TYPE_CHOICES = (
-        ('EMPTY','--'),
         ('STANDARD','Standard action'),
         ('MOVE','Move action'),
         ('INTERRUPT','Immediate Interrupt'),
@@ -28,7 +34,6 @@ class Ability(models.Model):
     )
 
     ATTACK_TYPE_CHOICES = (
-        ('EMPTY','--'),
         ('ME','Melee'),
         ('MB','Melee Base'),
         ('RA','Ranged'),
@@ -43,7 +48,6 @@ class Ability(models.Model):
     )
 
     ATTACK_STAT_CHOICES = (
-        ('EMPTY','--'),
         ('STENGTH','Strength'),
         ('CONSTITUTION','Constitution'),
         ('DEXTERITY','Dexterity'),
@@ -53,7 +57,6 @@ class Ability(models.Model):
     )
 
     DEFENSE_STAT_CHOICES = (
-        ('EMPTY','--'),
         ('AC','AC'),
         ('FORTITUDE','Fortitude'),
         ('REFLEX','Reflex'),
@@ -61,7 +64,6 @@ class Ability(models.Model):
     )
 
     SUSTAIN_CHOICES = (
-        ('EMPTY','--'),
         ('MINOR','Minor'),
         ('MOVE','Move'),
         ('STANDARD','Standard')
@@ -72,8 +74,8 @@ class Ability(models.Model):
     flavor = models.TextField(blank=True)
     recharge = models.CharField(max_length=32,choices=RECHARGE_CHOICES, default='ATWILL',blank=True)
     keywords = models.CharField(max_length=32,blank=True)
-    actionType = models.CharField(max_length=32,choices=ACTION_TYPE_CHOICES, default='EMPTY',blank=True)
-    attackType = models.CharField(max_length=32,choices=ATTACK_TYPE_CHOICES, default='EMPTY',blank=True)
+    actionType = models.CharField(max_length=32,choices=ACTION_TYPE_CHOICES,blank=True)
+    attackType = models.CharField(max_length=32,choices=ATTACK_TYPE_CHOICES,blank=True)
     attackRange = models.CharField(max_length=32,blank=True)
     trigger = models.TextField(blank=True)
     prerequisite = models.TextField(blank=True)
@@ -91,6 +93,8 @@ class Ability(models.Model):
     sustainType = models.CharField(max_length=32,choices=SUSTAIN_CHOICES, default='EMPTY',blank=True)
     sustainNote = models.CharField(max_length=32,blank=True)
     special = models.TextField(blank=True)
+    notes = models.TextField(blank=True,default='')
+    source = models.CharField(max_length=32,blank=True,default='')
 
     def __unicode__(self):
         return self.name
