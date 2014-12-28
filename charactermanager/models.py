@@ -1,19 +1,25 @@
 from django.db import models
+from autoslug import AutoSlugField
 
 # Create your models here.
 
 class Campaign(models.Model):
     name = models.CharField(max_length=64)
-    slug = models.SlugField(unique=True)
-    character = models.ManyToManyField("Character")
+    slug = AutoSlugField(populate_from='name', unique=True)
+    image = models.ImageField(upload_to='uploaded/project_images/thumbnails/')
+    color = models.CharField(max_length=7)
+    characters = models.ManyToManyField("Character")
     
 
 class Character(models.Model):
-	name = models.CharField(max_length=16)
-	abilities = models.ManyToManyField("Ability")
+    name = models.CharField(max_length=16)
+    slug = AutoSlugField(populate_from='name', unique=True)
+    abilities = models.ManyToManyField("Ability")
+    summary = models.TextField(blank=True)
+    background = models.TextField(blank=True)
 
-	def __unicode__(self):
-		return self.name
+    def __unicode__(self):
+        return self.name
 
 class Ability(models.Model):
 
