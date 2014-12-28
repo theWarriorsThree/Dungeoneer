@@ -6,17 +6,17 @@ from autoslug import AutoSlugField
 class Campaign(models.Model):
     name = models.CharField(max_length=64)
     slug = AutoSlugField(populate_from='name', unique=True)
-    image = models.ImageField(upload_to='uploaded/project_images/thumbnails/')
-    color = models.CharField(max_length=7)
-    characters = models.ManyToManyField("Character")
+    image = models.ImageField(upload_to='uploaded/campaigns/',blank=True,default='')
+    color = models.CharField(max_length=7,default='#FFFFFF')
+    characters = models.ManyToManyField('Character')
     
 
 class Character(models.Model):
     name = models.CharField(max_length=16)
     slug = AutoSlugField(populate_from='name', unique=True)
-    abilities = models.ManyToManyField("Ability")
-    summary = models.TextField(blank=True)
-    background = models.TextField(blank=True)
+    abilities = models.ManyToManyField('Ability')
+    summary = models.TextField(blank=True,default='')
+    background = models.TextField(blank=True,default='')
 
     def __unicode__(self):
         return self.name
@@ -79,7 +79,7 @@ class Ability(models.Model):
     level = models.CharField(max_length=32,blank=True)
     flavor = models.TextField(blank=True)
     recharge = models.CharField(max_length=32,choices=RECHARGE_CHOICES, default='ATWILL',blank=True)
-    keywords = models.CharField(max_length=32,blank=True)
+    keywords = models.ManyToManyField('AbilityKeyword')
     actionType = models.CharField(max_length=32,choices=ACTION_TYPE_CHOICES,blank=True)
     attackType = models.CharField(max_length=32,choices=ATTACK_TYPE_CHOICES,blank=True)
     attackRange = models.CharField(max_length=32,blank=True)
@@ -102,5 +102,12 @@ class Ability(models.Model):
     notes = models.TextField(blank=True,default='')
     source = models.CharField(max_length=32,blank=True,default='')
 
+    def __unicode__(self):
+        return self.name
+    
+    
+class AbilityKeyword(models.Model):
+    name = models.CharField(max_length=16)
+    
     def __unicode__(self):
         return self.name
