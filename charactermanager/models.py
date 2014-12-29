@@ -8,7 +8,7 @@ class Campaign(models.Model):
     slug = AutoSlugField(populate_from='name', unique=True)
     image = models.ImageField(upload_to='uploaded/campaigns/',blank=True,default='')
     color = models.CharField(max_length=7,default='#8F65A8')
-    characters = models.ManyToManyField('Character')
+    characters = models.ManyToManyField('Character',blank=True)
 
     def __unicode__(self):
         return self.name
@@ -17,7 +17,7 @@ class Campaign(models.Model):
 class Character(models.Model):
     name = models.CharField(max_length=16)
     slug = AutoSlugField(populate_from='name', unique=True)
-    abilities = models.ManyToManyField('Ability')
+    abilities = models.ManyToManyField('Ability',blank=True)
     summary = models.TextField(blank=True,default='')
     background = models.TextField(blank=True,default='')
 
@@ -82,7 +82,7 @@ class Ability(models.Model):
     level = models.CharField(max_length=32,blank=True)
     flavor = models.TextField(blank=True)
     recharge = models.CharField(max_length=32,choices=RECHARGE_CHOICES, default='ATWILL',blank=True)
-    keywords = models.ManyToManyField('AbilityKeyword')
+    keywords = models.ManyToManyField('AbilityKeyword',blank=True)
     actionType = models.CharField(max_length=32,choices=ACTION_TYPE_CHOICES,blank=True)
     attackType = models.CharField(max_length=32,choices=ATTACK_TYPE_CHOICES,blank=True)
     attackRange = models.CharField(max_length=32,blank=True)
