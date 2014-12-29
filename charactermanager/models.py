@@ -9,6 +9,9 @@ class Campaign(models.Model):
     image = models.ImageField(upload_to='uploaded/campaigns/',blank=True,default='')
     color = models.CharField(max_length=7,default='#FFFFFF')
     characters = models.ManyToManyField('Character')
+
+    def __unicode__(self):
+        return self.name
     
 
 class Character(models.Model):

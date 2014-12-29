@@ -11,7 +11,7 @@ def campaign(request, campaign_name):
 def campaigns(request):
     context = RequestContext(request)
     context['campaigns'] = Campaign.objects.all().order_by('name')
-    return render_to_response('dungeoneer/campaignsTemplate.html', context)
+    return render_to_response('dungeoneer/campaignListTemplate.html', context)
 
 def abilities(request, campaign_name, player_name):
 	context = RequestContext(request)
