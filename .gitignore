@@ -1,7 +1,7 @@
 #project
 charactermanager/migrations/
 db.sqlite3
-dungeoneer/
+./dungeoneer/
 manage.py
 dungeoneerproject/
 

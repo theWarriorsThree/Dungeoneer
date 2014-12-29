@@ -6,11 +6,12 @@ from charactermanager.models import Ability, Campaign
 def campaign(request, campaign_name):
     context = RequestContext(request)
     context['campaign'] = get_object_or_404(Campaign,slug=campaign_name)
-    return render_to_response('dungeoneer/abilitiesTemplate.html', context)
+    return render_to_response('dungeoneer/campaignTemplate.html', context)
 
 def campaigns(request):
     context = RequestContext(request)
-    return render_to_response('dungeoneer/abilitiesTemplate.html', context)
+    context['campaigns'] = Campaign.objects.all().order_by('name')
+    return render_to_response('dungeoneer/campaignsTemplate.html', context)
 
 def abilities(request, campaign_name, player_name):
 	context = RequestContext(request)
