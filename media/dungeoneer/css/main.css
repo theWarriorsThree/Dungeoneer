@@ -25,7 +25,7 @@ strong {font-weight: 700;}
 		.ability.daily > table tr.header, .ability.daily > table tr .book-location  {background-color: #121212;}
 				
 		.paper-stack:before, .paper-stack:after, .paper-stack > .top-page { height: 24em; width: 20em;  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.2);  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2);  box-shadow: 0 0 .6em rgba(0,0,0,0.4);}
-		.paper-stack { position: relative;  display: inline-block;  width: 24em; height: 28em;}
+		.paper-stack { position: relative;  display: inline-block;  width: 24em; height: 28em;  color:#000;}
 		.paper-stack:before {  content: '';  position: absolute;  -moz-transform: rotate(-2deg);    -webkit-transform: rotate(-2deg);    transform: rotate(-2deg);   background-color: #fff;   z-index: 5;  -webkit-transition: .2s;}
 		.paper-stack:after {  content: '';  position: absolute;  -moz-transform: rotate(4deg);    -webkit-transform: rotate(4deg);    transform: rotate(4deg);   background-color: #fff;   z-index: 5;  -webkit-transition: .4s;  transition: .4s;}
 		.paper-stack > .top-page {  position: absolute;  background-color: #fff;    z-index: 20;}
@@ -34,10 +34,18 @@ strong {font-weight: 700;}
 		.paper-stack:hover > top-page {  top: -0.5em;  -webkit-transition: .5s;  transition: .5s;}
 
 
-		.book {  position: relative;  display: inline-block;  width: 24em; height: 28em;}
+		.book {  position: relative;  display: inline-block;  width: 24em; height: 28em; color:#000;}
 		.book > .cover, .book > .back-cover {  height: 24em; width: 20em;   background-color: red;    position: absolute;  top: 0;  left: 0;}
-		.book > .cover {  z-index: 100;}
-		.book > .cover:hover {    top: 2em;    -ms-transform: skew(30deg,20deg); /* IE 9 */    -webkit-transform: skew(30deg,20deg); /* Chrome, Safari, Opera */    transform: skew(00deg,10deg);    transition: .2s;}
+		.book > .cover {  z-index: 100; background-size: cover; background-position: center center; background-repeat: no-repeat; overflow: hidden; box-shadow:  .4em 0 .4em 0 rgba(50, 50, 50, 0.75);}
+			.book > .cover  > .dnd{font-family: 'Overlock SC', cursive; text-align: center; color: #ee0000; font-size: 2em; line-height: .8em; background-color: #FFFFCC; padding: .1em 0 .2em; margin-top: .6em; border-top: solid .08em #e0b414;  border-bottom: solid .08em #e0b414;
+				text-shadow:
+				-0.03em -0.03em 0 #e0b414,  
+				0.03em -0.03em 0 #e0b414,
+				-0.03em 0.03em 0 #e0b414,
+				0.03em 0.03em 0 #e0b414;}
+			.book > .cover > h2 {text-align: center; margin: 0; font-family: 'Gentium Book Basic'; color: #fff; font-weight: 300; font-size: 1.2em; border-bottom: solid .14em #e0b414;}
+			.book > .cover > .ribbon {text-align: center; border-top: solid .14em #e0b414;  border-bottom: solid .14em #e0b414; color: #fff; font-family: 'Lato', sans-serif; text-transform: uppercase; font-size: .7em; margin-top: 21.5em; padding: .4em 0;}
+		.book:hover > .cover {    top: 2em;    -ms-transform: skew(30deg,20deg); /* IE 9 */    -webkit-transform: skew(30deg,20deg); /* Chrome, Safari, Opera */    transform: skew(00deg,10deg);    transition: .2s;}
 		.book > .back-cover {  left: .6em;  top: -.6em;  z-index: 0;}
 		.pages {  content: "";  height: 24em; width: 20em;  background-color: #fff;  left: .1em;  top: -.1em;  position: absolute;  z-index: 10;}
 		.book > .back-cover:before {  content: "";  height: 24em; width: 20em;  background-color: rgba(5,5,5,0.2);  display: block;  position: absolute;}
