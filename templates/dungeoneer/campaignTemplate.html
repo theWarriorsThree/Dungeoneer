@@ -10,8 +10,8 @@
 	<body>
 		<section id="campaign-wrapper">
 
-		{% for player in players %}
-			<a href="{% url 'charactermanager.views.abilities' abilities.slug %}"  class="paper-stack">
+		{% for player in campaign.characters.all %}
+			<a href="{% url 'charactermanager.views.abilities' campaign.slug player.slug %}"  class="paper-stack">
 				<div class="top-page">
 					<div class="content">
 						<h2>{{player.name}}</h2>

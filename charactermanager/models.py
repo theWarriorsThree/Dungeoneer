@@ -7,7 +7,7 @@ class Campaign(models.Model):
     name = models.CharField(max_length=64)
     slug = AutoSlugField(populate_from='name', unique=True)
     image = models.ImageField(upload_to='uploaded/campaigns/',blank=True,default='')
-    color = models.CharField(max_length=7,default='#FFFFFF')
+    color = models.CharField(max_length=7,default='#8F65A8')
     characters = models.ManyToManyField('Character')
 
     def __unicode__(self):
