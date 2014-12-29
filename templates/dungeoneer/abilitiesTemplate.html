@@ -11,7 +11,7 @@
 		<section id="abilities-wrapper">
 		<!--
 		{% for ability in abilities %}
-			--><div class="ability at-will">
+			--><div class="ability {{ability.get_recharge_display|lower}}">
 				<table border="0" cellspacing="0">
 					<tr class="header">
 						<td class="name">
@@ -23,105 +23,126 @@
 					</tr>
 					<tr class="dark">
 						<td class="flavour"  colspan="2">
-							Ahoy there, sailor, Can you do the otter dance? First you take your right flipper, and you slap it on your pants Next you take your left flipper, and you catch a little fish Then you take your little tail and you swish, swish, swish!
+							{{ability.flavor}}
 						</td>
 					</tr>
 					<tr>
 						<td class="keywords"  colspan="2">
-							<strong class="recharge">Encounter</strong>
+							<strong class="recharge">{{ability.get_recharge_display}}</strong>
 							<span class="separator">~</span>
 							<ul>
-								<li>Martial</li>
-								<li>Weapon</li>
-								<li>Martial</li>
-								<li>Weapon</li>
+								{% for keyword in ability.keywords.all %}
+									<li>{{keyword}}</li>
+								{% endfor %}
 							</ul>
 						</td>
 					</tr>
 					<tr>
 						<td class="action-type">
-							<strong>Standard Action</strong>
+							<strong>{{ability.get_actionType_display}}</strong>
 						</td>
 						<td class="attack-type">
-							<strong>Ranged</strong> <span class="attack-range">weapon</span>
+							<strong>{{ability.get_attackType_display}}</strong> <span class="attack-range">{{ability.attackRange}}</span>
 						</td>
 					</tr>
+					{% if ability.trigger %}
 					<tr>
 						<td class="trigger" colspan="2">
-							<strong>Triger: </strong>
-							<span>Ally Dies</span>
+							<strong>Trigger: </strong>
+							<span>{{ability.trigger}}</span>
 						</td>
 					</tr>
+					{% endif %}
+					{% if ability.prerequisite %}
 					<tr>
 						<td class="prerequisite" colspan="2">
 							<strong>Prerequisite: </strong>
-							<span>Axe Prof</span>
+							<span>{{ability.prerequisite}}</span>
 						</td>
 					</tr>
+					{% endif %}
+					{% if ability.requirement %}
 					<tr>
 						<td class="requirement " colspan="2">
 							<strong>Requirement: </strong>
-							<span>Axe</span>
+							<span>{{ability.requirement}}</span>
 						</td>
 					</tr>
+					{% endif %}
+					{% if ability.target %}
 					<tr>
 						<td class="target" colspan="2">
 							<strong>Target: </strong>
-							<span>One Creature</span>
+							<span>{{ability.target}}</span>
 						</td>
 					</tr>
+					{% endif %}
 					<tr>
 						<td class="attack" colspan="2">
 							<strong>Attack: </strong>
-							<span>Strength +1 vs Wisdom, three attacks</span>
+							<span>{{ability.get_attackStat_display}} {{ability.attackStatNote}} vs {{ability.get_defenseStat_display}} {{ability.defenseStatNote}}</span>
 						</td>
 					</tr>
 					<!--Begin added dark class to odd numbered rows-->
+					{% if ability.hit %}
 					<tr class="dark">
 						<td class="hit" colspan="2">
 							<strong>Hit: </strong>
-							<span>1[W] + Strength Modifier damage per attack. If both attacks hit, deal an additional 1d10 damage and the target is weakened until the end of your next turn.</span>
+							<span>{{ability.hit}}</span>
 						</td>
 					</tr>
+					{% endif %}
+					{% if ability.miss %}
 					<tr>
 						<td class="miss" colspan="2">
 							<strong>Miss: </strong>
-							<span>half weapon damage on one attack.</span>
+							<span>{{ability.miss}}</span>
 						</td>
 					</tr>
+					{% endif %}
+					{% if ability.secondaryTarget %}
 					<tr class="dark">
 						<td class="secondary-target" colspan="2">
 							<strong>Secondary Target: </strong>
-							<span>hit one other pleb for 5 damage.</span>
+							<span>{{ability.secondaryTarget}}</span>
 						</td>
 					</tr>
+					{% endif %}
+					{% if ability.secondaryAttack %}
 					<tr>
 						<td class="secondary-attack" colspan="2">
 							<strong>Secondary Attack: </strong>
-							<span>Strength vs AC for 5 damage</span>
+							<span>{{ability.secondaryAttack}}</span>
 						</td>
 					</tr>
+					{% endif %}
+					{% if ability.effect %}
 					<tr class="dark">
 						<td class="effect" colspan="2">
 							<strong>Effect: </strong>
-							<span>Bitches be dead.</span>
+							<span>{{ability.effect}}</span>
 						</td>
 					</tr>
+					{% endif %}
+					{% if ability.sustainType %}
 					<tr>
 						<td class="sustain-type" colspan="2">
 							<strong>Sustain Type: </strong>
-							<span>Reasonable</span>
+							<span>{{ability.get_sustainType_display}}</span>
 						</td>
 					</tr>
+					{% endif %}
+					{% if ability.special %}
 					<tr class="dark">
 						<td class="special" colspan="2">
 							<strong>Special: </strong>
-							<span>Very.</span>
+							<span>{{ability.special}}</span>
 						</td>
 					</tr>
+					{% endif %}
 					<tr>
 						<td class="book-location" colspan="2">
-							<span>Player Handbook 1, page 111</span>
+							<span>{{ability.source|default:"Some idiot did not enter a reference... Try PH1?"}}</span>
 						</td>
 					</tr>
 				</table>
