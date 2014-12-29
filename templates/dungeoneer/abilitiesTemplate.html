@@ -77,12 +77,14 @@
 						</td>
 					</tr>
 					{% endif %}
+					{% if ability.attackStat %}
 					<tr>
 						<td class="attack" colspan="2">
 							<strong>Attack: </strong>
 							<span>{{ability.get_attackStat_display}} {{ability.attackStatNote}} vs {{ability.get_defenseStat_display}} {{ability.defenseStatNote}}</span>
 						</td>
 					</tr>
+					{% endif %}
 					<!--Begin added dark class to odd numbered rows-->
 					{% if ability.hit %}
 					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
@@ -137,6 +139,13 @@
 						<td class="special" colspan="2">
 							<strong>Special: </strong>
 							<span>{{ability.special}}</span>
+						</td>
+					</tr>
+					{% endif %}
+					{% if ability.notes %}
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
+						<td class="notes" colspan="2">
+							<span>{{ability.notes}}</span>
 						</td>
 					</tr>
 					{% endif %}
