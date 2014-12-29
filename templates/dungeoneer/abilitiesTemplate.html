@@ -5,10 +5,10 @@
 	<!-- font collection -->
 	<!-- http://www.google.com/fonts#UsePlace:use/Collection:Lato:300,400,700,900,300italic,400italic,700italic,900italic|Gentium+Book+Basic:400,400italic,700italic,700 -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Gentium+Book+Basic:400,400italic,700italic,700' rel='stylesheet' type='text/css'>
-	
+
 	</head>
 	<body>
-		<section id="abilities-wrapper">
+		<section id="abilities-wrapper">            
 		<!--
 		{% for ability in abilities %}
 			--><div class="ability {{ability.get_recharge_display|lower}}">
@@ -85,7 +85,7 @@
 					</tr>
 					<!--Begin added dark class to odd numbered rows-->
 					{% if ability.hit %}
-					<tr class="dark">
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="hit" colspan="2">
 							<strong>Hit: </strong>
 							<span>{{ability.hit}}</span>
@@ -93,7 +93,7 @@
 					</tr>
 					{% endif %}
 					{% if ability.miss %}
-					<tr>
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="miss" colspan="2">
 							<strong>Miss: </strong>
 							<span>{{ability.miss}}</span>
@@ -101,7 +101,7 @@
 					</tr>
 					{% endif %}
 					{% if ability.secondaryTarget %}
-					<tr class="dark">
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="secondary-target" colspan="2">
 							<strong>Secondary Target: </strong>
 							<span>{{ability.secondaryTarget}}</span>
@@ -109,7 +109,7 @@
 					</tr>
 					{% endif %}
 					{% if ability.secondaryAttack %}
-					<tr>
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="secondary-attack" colspan="2">
 							<strong>Secondary Attack: </strong>
 							<span>{{ability.secondaryAttack}}</span>
@@ -117,7 +117,7 @@
 					</tr>
 					{% endif %}
 					{% if ability.effect %}
-					<tr class="dark">
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="effect" colspan="2">
 							<strong>Effect: </strong>
 							<span>{{ability.effect}}</span>
@@ -125,7 +125,7 @@
 					</tr>
 					{% endif %}
 					{% if ability.sustainType %}
-					<tr>
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="sustain-type" colspan="2">
 							<strong>Sustain Type: </strong>
 							<span>{{ability.get_sustainType_display}}</span>
@@ -133,14 +133,14 @@
 					</tr>
 					{% endif %}
 					{% if ability.special %}
-					<tr class="dark">
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="special" colspan="2">
 							<strong>Special: </strong>
 							<span>{{ability.special}}</span>
 						</td>
 					</tr>
 					{% endif %}
-					<tr>
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="book-location" colspan="2">
 							<span>{{ability.source|default:"Some idiot did not enter a reference... Try PH1?"}}</span>
 						</td>

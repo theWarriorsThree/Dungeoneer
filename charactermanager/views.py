@@ -3,6 +3,20 @@ from django.template import RequestContext
 from charactermanager.models import Ability, Campaign
 # Create your views here.
 
+class Counter:
+    count = 0
+    
+    def __unicode__(self):
+        return count
+
+    def increment(self):
+        self.count += 1
+        return self.count
+
+    def decrement(self):
+        self.count -= 1
+        return self.count
+
 def campaign(request, campaign_name):
     context = RequestContext(request)
     context['campaign'] = get_object_or_404(Campaign,slug=campaign_name)
@@ -14,6 +28,7 @@ def campaigns(request):
     return render_to_response('dungeoneer/campaignListTemplate.html', context)
 
 def abilities(request, campaign_name, player_name):
-	context = RequestContext(request)
-	context['abilities'] = Ability.objects.all().order_by('recharge')
-	return render_to_response('dungeoneer/abilitiesTemplate.html', context)
+    context = RequestContext(request)
+    context['counter'] = Counter()
+    context['abilities'] = Ability.objects.filter(character__slug=player_name).order_by('recharge')
+    return render_to_response('dungeoneer/abilitiesTemplate.html', context)
