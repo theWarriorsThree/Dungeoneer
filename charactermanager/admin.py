@@ -5,10 +5,13 @@ class CampaignAdmin(admin.ModelAdmin):
     filter_horizontal = ('characters', )
 
 class CharacterAdmin(admin.ModelAdmin):
+    save_as = True
     filter_horizontal = ('abilities', )
     
 class AbilityAdmin(admin.ModelAdmin):
+    save_as = True
     filter_horizontal = ('keywords', )
+    
 
 admin.site.register(Campaign, CampaignAdmin)
 admin.site.register(Character, CharacterAdmin)
