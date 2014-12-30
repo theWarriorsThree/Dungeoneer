@@ -17,6 +17,7 @@ class Campaign(models.Model):
 class Character(models.Model):
     name = models.CharField(max_length=64)
     slug = AutoSlugField(populate_from='name', unique=True,editable=True)
+    image = models.ImageField(upload_to='uploaded/characters/',blank=True,default='')
     abilities = models.ManyToManyField('Ability',blank=True)
     summary = models.TextField(blank=True,default='')
     background = models.TextField(blank=True,default='')
