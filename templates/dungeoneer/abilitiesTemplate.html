@@ -145,7 +145,7 @@
 					{% if ability.notes %}
 					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="notes" colspan="2">
-							<span>{{ability.notes|escape}}</span>
+							<span>{{ability.notes|safe}}</span>
 						</td>
 					</tr>
 					{% endif %}
