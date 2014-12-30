@@ -5,7 +5,7 @@ from autoslug import AutoSlugField
 
 class Campaign(models.Model):
     name = models.CharField(max_length=64)
-    slug = AutoSlugField(populate_from='name', unique=True)
+    slug = AutoSlugField(populate_from='name', unique=True,editable=True)
     image = models.ImageField(upload_to='uploaded/campaigns/',blank=True,default='')
     color = models.CharField(max_length=7,default='#8F65A8')
     characters = models.ManyToManyField('Character',blank=True)
@@ -16,7 +16,7 @@ class Campaign(models.Model):
 
 class Character(models.Model):
     name = models.CharField(max_length=64)
-    slug = AutoSlugField(populate_from='name', unique=True)
+    slug = AutoSlugField(populate_from='name', unique=True,editable=True)
     abilities = models.ManyToManyField('Ability',blank=True)
     summary = models.TextField(blank=True,default='')
     background = models.TextField(blank=True,default='')
@@ -110,7 +110,7 @@ class Ability(models.Model):
     
     
 class AbilityKeyword(models.Model):
-    name = models.CharField(max_length=16)
+    name = models.CharField(max_length=16,unique=True)
     
     def __unicode__(self):
         return self.name
