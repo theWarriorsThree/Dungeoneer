@@ -29,7 +29,7 @@ strong {font-weight: 700;}
 		.ability.daily > table tr.header, .ability.daily > table tr .book-location  {background-color: #121212;}
 				
 		.paper-stack:before, .paper-stack:after, .paper-stack > .top-page { height: 24em; width: 20em;  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.2);  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2);  box-shadow: 0 0 .6em rgba(0,0,0,0.4);}
-		.paper-stack { position: relative;  display: inline-block;  width: 24em; height: 28em;  color:#000; text-align: left;}
+		.paper-stack { position: relative;  display: inline-block;  width: 20em; height: 24em;  color:#000; text-align: left; margin: 2em;}
 		.paper-stack:before {  content: '';  position: absolute;  -moz-transform: rotate(-2deg);    -webkit-transform: rotate(-2deg);    transform: rotate(-2deg);   background-color: #fff;   z-index: 5;  -webkit-transition: .2s;}
 		.paper-stack:after {  content: '';  position: absolute;  -moz-transform: rotate(4deg);    -webkit-transform: rotate(4deg);    transform: rotate(4deg);   background-color: #fff;   z-index: 5;  -webkit-transition: .4s;  transition: .4s;}
 		.paper-stack > .top-page {  position: absolute;  background-color: #fff;    z-index: 20;}
