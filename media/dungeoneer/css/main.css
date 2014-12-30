@@ -36,8 +36,9 @@ strong {font-weight: 700;}
 		.paper-stack > .top-page > .content {  padding: 1.5em;}
 		.paper-stack:hover:before, .paper-stack:hover:after {  -moz-transform: rotate(0deg);    -webkit-transform: rotate(0deg);    -moz-transform: rotate(0deg);    transform: rotate(0deg);   background-color:#fff;}
 		.paper-stack:hover > top-page {  top: -0.5em;  -webkit-transition: .5s;  transition: .5s;}
-		.paper-stack .content {font-family: 'Gentium Book Basic', serif;}
+		.paper-stack .content {font-family: 'Gentium Book Basic', serif; text-align: justify;}
 		.paper-stack .content h2 {font-family: 'Lato',sans-serif; font-weight: 500; margin-top: 0;}
+		.paper-stack .content img {max-width: 6em; float: left; margin-right: 1em; margin-bottom: 1em;}
 		
 		.book{position: relative; display: inline-block; width: 20em; height: 28em; color: #000; margin: 2em; text-align: left;}
 			.book > .cover,.book > .back-cover{height:24em;width:20em;background-color:#2c616f;position:absolute;top:0;left:0}
