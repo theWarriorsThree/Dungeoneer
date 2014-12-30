@@ -2,6 +2,8 @@ strong {font-weight: 700;}
 
 #campaign-wrapper, #campaign-list-wrapper {text-align: center; margin-top:2em;}
 
+#campaignListTemplate, #campaignTemplate {background: url('img/wood.jpg');}
+
 .ability {display: inline-block; width: 32.7%; margin: .5em .3%; background:#efefef; vertical-align: top; font-size: .8em; page-break-before: always; page-break-after: always;}
 	.ability > table {width: 100%; font-size: .9em;}
 		.ability > table  tr {}
