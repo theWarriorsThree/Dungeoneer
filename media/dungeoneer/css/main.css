@@ -64,6 +64,14 @@ strong {font-weight: 700;}
 @media only screen and (max-width: 500px) {
 	.ability {width: 99.4%; margin: .5em .3%;}
 }
+
+@media only screen and (max-width: 425px) {
+	#campaignListTemplate, #campaignTemplate {font-size: .8em;}
+}
+
+@media only screen and (max-width: 340px) {
+	#campaignListTemplate, #campaignTemplate {font-size: .7em;}
+}
 		
 /*.ability {display: inline-block; width: 30%; margin: 1em 1.66%; background:#efefef;}
 	.ability > .inner {display: table; width: 100%;}
