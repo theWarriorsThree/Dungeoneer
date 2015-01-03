@@ -1,7 +1,9 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from charactermanager.models import Ability, Campaign
-# Create your views here.
+
+from itertools import chain
+
 
 class Counter:
     count = 0
@@ -30,5 +32,8 @@ def campaigns(request):
 def abilities(request, campaign_name, player_name):
     context = RequestContext(request)
     context['counter'] = Counter()
-    context['abilities'] = Ability.objects.filter(character__slug=player_name).order_by('recharge')
+    atwills = Ability.objects.filter(character__slug=player_name, recharge="ATWILL").order_by('name')
+    encounters = Ability.objects.filter(character__slug=player_name, recharge="ENCOUNTER").order_by('name')
+    dailies = Ability.objects.filter(character__slug=player_name, recharge="DAILY").order_by('name')
+    context['abilities'] = list( chain(atwills, encounters, dailies) )
     return render_to_response('dungeoneer/abilitiesTemplate.html', context)
