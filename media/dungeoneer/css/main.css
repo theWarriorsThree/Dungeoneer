@@ -13,7 +13,7 @@ strong {font-weight: 700;}
 		.ability > table  tr.header  {background-color: red; color: #fff;}
 			.ability > table tr td {vertical-align: bottom; font-family: 'Lato', sans-serif; padding: .2em .4em; font-size: .9em;}
 			.ability > table tr.header > td {vertical-align: middle;}
-			.ability > table tr .name h2 {margin: 0; font-size:1.2em;}
+			.ability > table tr .name h2 {margin: 0; font-size:1.2em; white-space: nowrap;}
 			.ability > table tr .level {text-align: right;}
 			.ability > table tr .flavour {font-family: 'Gentium Book Basic', serif; font-style: italic; font-size: 1em;}
 			.ability > table tr .keywords {}

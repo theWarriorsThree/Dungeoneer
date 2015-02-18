@@ -134,6 +134,14 @@
 						</td>
 					</tr>
 					{% endif %}
+					{% if ability.sustainNote %}
+					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
+						<td class="sustain-note" colspan="2">
+							<strong>Sustain: </strong>
+							<span>{{ability.sustainNote|safe}}</span>
+						</td>
+					</tr>
+					{% endif %}
 					{% if ability.special %}
 					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="special" colspan="2">
