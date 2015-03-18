@@ -90,7 +90,7 @@
 					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="hit" colspan="2">
 							<strong>Hit: </strong>
-							<span>{{ability.hit}}</span>
+							<span>{{ability.hit|safe}}</span>
 						</td>
 					</tr>
 					{% endif %}
