@@ -2,10 +2,37 @@ body {-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); }
 
 strong {font-weight: 700;}
 
+#admin-panel {position: fixed; top: 0; right: 0; height: 3em; line-height: 3em; width: 100%; display: none;}
+	#admin-panel .toggle {width: 3em; height: 3em; position: relative; float: right; margin-left: -3em;}
+		#admin-panel .toggle .background {width: 0; height: 0; border-style: solid; border-width: 0 3em 3em 0; border-color: transparent #E3E3E3 transparent transparent;}
+		#admin-panel .toggle a {position: absolute; top: .25em; right: .1em; line-height: .5em; color: #000; font-size: 2em; text-decoration: none;}
+	#admin-panel nav {width: 0%; overflow: hidden; margin: 0; float: right; transition: 1.5s; background-color:#E3E3E3;}
+	#admin-panel:hover nav {width: 100%;}
+		#admin-panel nav ul {list-style: none; padding: 0; margin: 0; height: 3em;}
+			#admin-panel nav ul li {display: inline-block; margin: 0 2em;}
+				#admin-panel nav ul li a { font-family: 'Lato', sans-serif; text-decoration: none; color: #000;}
+
 #campaign-wrapper, #campaign-list-wrapper {text-align: center; margin-top:2em;}
 
 #campaignListTemplate, #campaignTemplate {background: url('img/wood.jpg');}
 
+.monster {display: inline-block; width: 32.7%; margin: .5em .3%; background:#efefef; vertical-align: top; font-size: .8em; page-break-before: always; page-break-after: always;}
+	.monster > table {width: 100%; font-size: .9em;}
+		.monster > table  tr {}
+		.monster > table  tr.dark {background-color:#DBDBDB}
+		.monster > table  tr.header  {background-color: #46532D; color: #fff;}
+			.monster > table tr td {vertical-align: bottom; font-family: 'Lato', sans-serif; padding: .2em .4em; font-size: .9em;}
+			.monster > table tr.header > td {vertical-align: middle;}
+			.monster > table tr .name h2 {margin: 0; font-size:1.2em; white-space: nowrap;}
+			.monster > table tr .origin span {margin: 0; font-size:1em; white-space: nowrap;}
+			.monster > table tr .level {text-align: right;}
+			.monster > table tr .xp {text-align: right;}
+			.monster > table tr .book-location {background-color: #46532D; text-align: right; color: #fff;} 
+				.monster > table tr .book-location {font-family: 'Gentium Book Basic', serif; font-style: italic;}
+
+.monsters-wrapper > h1 {font-family: 'Lato', sans-serif; margin: 0 0 .5em; text-transform: uppercase; border-bottom: .1em solid;}
+.monsters-wrapper > h2 {font-family: 'Lato', sans-serif; margin: 0 0 .4em; font-size: 1.2em; color: #991111;}
+				
 .ability {display: inline-block; width: 32.7%; margin: .5em .3%; background:#efefef; vertical-align: top; font-size: .8em; page-break-before: always; page-break-after: always;}
 	.ability > table {width: 100%; font-size: .9em;}
 		.ability > table  tr {}
@@ -60,12 +87,12 @@ strong {font-weight: 700;}
 			.book:hover > .pages:after{top:2em;-ms-transform:skew(30deg,20deg);-webkit-transform:skew(30deg,20deg);transform:skew(00deg,10deg);transition:.4s}
 			.book:hover > .pages:before{top:1.9em;-ms-transform:skew(30deg,20deg);-webkit-transform:skew(30deg,20deg);transform:skew(00deg,10deg);transition:.8s}
 
-@media only screen and (max-width: 768px) {
-	.ability {width: 49.35%; margin: .5em .3%;}
+@media only screen and (max-width: 850px) {
+	.ability, .monster {width: 49.35%; margin: .5em .3%;}
 }
 
-@media only screen and (max-width: 500px) {
-	.ability {width: 99.4%; margin: .5em .3%;}
+@media only screen and (max-width: 600px) {
+	.ability, .monster {width: 99.4%; margin: .5em .3%;}
 }
 
 @media only screen and (max-width: 425px) {
