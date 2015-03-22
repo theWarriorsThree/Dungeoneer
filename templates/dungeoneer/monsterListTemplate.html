@@ -1,7 +1,7 @@
 <html>
 	<head>
 	<link rel="stylesheet" href="/media/dungeoneer/css/main.css">
-	
+
 	<!-- font collection -->
 	<!-- http://www.google.com/fonts#UsePlace:use/Collection:Overlock+SC|Lato:300,400,700,900,300italic,400italic,700italic,900italic|Gentium+Book+Basic:400,400italic,700italic,700-->
 	<link href='http://fonts.googleapis.com/css?family=Overlock+SC|Lato:300,400,700,900,300italic,400italic,700italic,900italic|Gentium+Book+Basic:400,400italic,700italic,700' rel='stylesheet' type='text/css'>
@@ -24,7 +24,9 @@
 		<section class="monsters-wrapper">
 		<h1>Goblins</h1>
 		<h2>Pirate</h2>
-		<div class="monster">
+        <!--
+		{% for monster in monsters %}
+        --><div class="monster">
 				<table border="0" cellspacing="0">
 					<tr class="header">
 						<td class="name">
@@ -95,6 +97,7 @@
 							<span>1</span>
 						</td>
 					</tr>
+                    {% for power in monster.powers.all %}
 					<tr class="dark">
 						<td class="power-name" colspan="2">
 							<strong>Tentacle </strong>
@@ -107,17 +110,7 @@
 							<span>+20 vs. AC; 2d8 + 8 damage (4d8 + 8 damage against a dazed target), and the target is dazed (save ends).</span>
 						</td>
 					</tr>
-					<tr class="dark">
-						<td class="power-name" colspan="2">
-							<strong>Combat Advantage </strong>
-							<span></span>
-						</td>
-					</tr>
-					<tr>
-						<td class="power-effect" colspan="2">
-							<span>An aboleth lasher makes an extra tentacle attack against any enemy it has combat advantage against.</span>
-						</td>
-					</tr>
+                    {% endfor %}
 					<tr class="dark">
 						<td class="alignment">
 							<strong>Alignment</strong>
@@ -159,10 +152,10 @@
 							<span>Monster Manual, Page 1</span>
 						</td>
 					</tr>
-					
-					
 				</table>
-			</div>
+			</div><!--
+			{% endfor %}
+			-->
 		</section>
 	</body>
 </html>

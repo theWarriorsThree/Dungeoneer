@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
-from charactermanager.models import Ability, Campaign
+from charactermanager.models import Ability, Campaign, Monster
 
 from itertools import chain
 
@@ -37,3 +37,8 @@ def abilities(request, campaign_name, player_name):
     dailies = Ability.objects.filter(character__slug=player_name, recharge="DAILY").order_by('name')
     context['abilities'] = list( chain(atwills, encounters, dailies) )
     return render_to_response('dungeoneer/abilitiesTemplate.html', context)
+
+def monsters(request):
+    context = RequestContext(request)
+    context['monsters'] = Monster.objects.all().order_by('name')
+    return render_to_response('dungeoneer/monsterListTemplate.html', context)

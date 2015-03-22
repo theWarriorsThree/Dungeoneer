@@ -202,6 +202,7 @@ class Monster(models.Model):
     origin = models.CharField(max_length=64,unique=True)
     monsterType = models.CharField(max_length=64,unique=True)
     keywords = models.ManyToManyField('MonsterKeyword',blank=True)
+    XP = models.CharField(max_length=64,blank=True)
     initiative = models.CharField(max_length=64,blank=True)
     perception = models.CharField(max_length=64,blank=True)
     specialSenses = models.CharField(max_length=64,blank=True)
@@ -253,7 +254,7 @@ class MonsterPower(models.Model):
     recharge = models.CharField(max_length=64,choices=RECHARGE_CHOICES, default='ATWILL',blank=True)
     keywords = models.ManyToManyField('AbilityKeyword',blank=True)
     powerEffect = models.TextField(blank=True)
-    monster = models.ForeignKey(Monster)
+    monster = models.ForeignKey(Monster,related_name='powers')
     
     def __unicode__(self):
         return self.name
