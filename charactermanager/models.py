@@ -181,13 +181,20 @@ class MonsterSubCategory(models.Model):
     def __unicode__(self):
         return self.name
 
+    def getMonsters(self,category):
+        return Monster.objects.filter(category=category.id,subCategory=this.id)
+
 class MonsterCategory(models.Model):
     name = models.CharField(max_length=64,unique=True) 
-    subCategories = models.ManyToManyField('MonsterSubcategory',blank=True)
+    subCategories = models.ManyToManyField('MonsterSubCategory',blank=True,related_name='subCategories')
 
     def __unicode__(self):
         return self.name
     
+    def getMonsters(self):
+        return Monster.objects.filter(category=this.id,subCategory__isnull=True)
+
+
 class MonsterKeyword(models.Model):
     name = models.CharField(max_length=16,unique=True)
     
@@ -195,6 +202,8 @@ class MonsterKeyword(models.Model):
         return self.name
     
 class Monster(models.Model):
+    category = models.ForeignKey(MonsterCategory,related_name='monsters')
+    subCategory = models.ForeignKey(MonsterSubCategory,related_name='monsters',null=True,blank=True)
     name = models.CharField(max_length=64,unique=True)
     level = models.CharField(max_length=64,blank=True)
     role = models.CharField(max_length=64,choices=ROLE_CHOICES, default='EMPTY',blank=True)

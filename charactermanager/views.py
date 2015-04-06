@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
-from charactermanager.models import Ability, Campaign, Monster
+from charactermanager.models import Ability, Campaign, MonsterCategory, Monster
 
 from itertools import chain
 
@@ -32,6 +32,7 @@ def campaigns(request):
 def abilities(request, campaign_name, player_name):
     context = RequestContext(request)
     context['counter'] = Counter()
+    context['name'] = player_name
     atwills = Ability.objects.filter(character__slug=player_name, recharge="ATWILL").order_by('name')
     encounters = Ability.objects.filter(character__slug=player_name, recharge="ENCOUNTER").order_by('name')
     dailies = Ability.objects.filter(character__slug=player_name, recharge="DAILY").order_by('name')
@@ -40,5 +41,12 @@ def abilities(request, campaign_name, player_name):
 
 def monsters(request):
     context = RequestContext(request)
-    context['monsters'] = Monster.objects.all().order_by('name')
+    context['categories'] = MonsterCategory.objects.all().order_by('name')
+#     = {}
+#    for category in categories:
+#        context['categories'][category.name] = {}
+#        for subCategory in category.subCategories.all():
+#            context['categories'][category.name][subCategory.name] = {}
+#            context['categories'][category.name][subCategory.name]['monsters'] = Monster.objects.filter(category=category.id,subCategory=subCategory.id)
+#        context['categories'][category.name]['monsters'] = Monster.objects.filter(category=category.id,subCategory__isnull=True)
     return render_to_response('dungeoneer/monsterListTemplate.html', context)
