@@ -208,8 +208,8 @@ class Monster(models.Model):
     level = models.CharField(max_length=64,blank=True)
     role = models.CharField(max_length=64,choices=ROLE_CHOICES, default='EMPTY',blank=True)
     size = models.CharField(max_length=64,choices=SIZE_CHOICES, default='EMPTY',blank=True)
-    origin = models.CharField(max_length=64,unique=True)
-    monsterType = models.CharField(max_length=64,unique=True)
+    origin = models.CharField(max_length=64,blank=True)
+    monsterType = models.CharField(max_length=64,blank=True)
     keywords = models.ManyToManyField('MonsterKeyword',blank=True)
     XP = models.CharField(max_length=64,blank=True)
     initiative = models.IntegerField(max_length=64,null=True,blank=True)
@@ -231,7 +231,7 @@ class Monster(models.Model):
     actionPoints = models.IntegerField(max_length=64,null=True,blank=True)
 
     alignment = models.CharField(max_length=64,choices=ALIGNMENT_CHOICES, default='EMPTY',blank=True)
-    language = MultiSelectField(choices=LANGUAGE_CHOICES)
+    language = MultiSelectField(choices=LANGUAGE_CHOICES,blank=True)
 
     languageNotes = models.TextField(blank=True)
     skills = models.CharField(max_length=64,blank=True)
