@@ -262,7 +262,7 @@ class MonsterPower(models.Model):
     actionType = models.CharField(max_length=64,choices=ACTION_TYPE_CHOICES,blank=True)
     sustain = models.TextField(blank=True)
     recharge = models.CharField(max_length=64,choices=RECHARGE_CHOICES, default='ATWILL',blank=True)
-	#rechargeDice var - 6 check boxes numbered 1 through 6. Mutiple boxes can be selected.
+    rechargeDice = MultiSelectField(choices=( (1,1),(2,2),(3,3),(4,4),(5,5),(6,6) ), blank=True,null=True )
     keywords = models.ManyToManyField('AbilityKeyword',blank=True)
     powerEffect = models.TextField(blank=True)
     monster = models.ForeignKey(Monster,related_name='powers')
