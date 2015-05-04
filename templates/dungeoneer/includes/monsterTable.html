@@ -12,7 +12,7 @@
                         <tr class="header">
                             <td class="origin">
                                 <span>{{monster.get_size_display}} {{monster.origin}} {{monster.monsterType}}
-								{% if monster.keywords|length > 0 %}
+								{% if monster.keywords.count > 0 %}
 									(
 										{% for keyword in monster.keywords.all %}
 											{{keyword}}{% if not forloop.last %}, {% endif %}
@@ -37,7 +37,7 @@
                         <tr>
                             <td class="aura" colspan="2">
                                 <strong>{{monster.aura}}
-								{% if monster.auraKeywords|length > 0 %}
+								{% if monster.auraKeywords.count > 0 %}
 									(
 										{% for keyword in monster.auraKeywords.all %}
 											{{keyword}}{% if not forloop.last %}, {% endif %}
@@ -100,7 +100,7 @@
                                 <strong>{{power.name}}</strong>
                                 <span>({{power.actionType}}{% if power.actionType %}; {% endif %}{{power.get_recharge_display}}) 
 								
-								{% if power.keywords|length > 0 %}
+								{% if power.keywords.count > 0 %}
 									~
 										{% for keyword in power.keywords.all %}
 											{{keyword}}{% if not forloop.last %}, {% endif %}
