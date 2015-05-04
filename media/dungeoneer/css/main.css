@@ -21,13 +21,15 @@ strong {font-weight: 700;}
 		.monster > table  tr {}
 		.monster > table  tr.dark {background-color:#DBDBDB}
 		.monster > table  tr.header  {background-color: #46532D; color: #fff;}
-			.monster > table tr td {vertical-align: bottom; font-family: 'Lato', sans-serif; padding: .2em .4em; font-size: .9em;}
+		.monster.elite > table  tr.header  {background-color: #663399; color: #FFFF00;}
+			.monster > table tr td {vertical-align: top; font-family: 'Lato', sans-serif; padding: .2em .4em; font-size: .9em;}
 			.monster > table tr.header > td {vertical-align: middle;}
 			.monster > table tr .name h2 {margin: 0; font-size:1.2em; white-space: nowrap;}
 			.monster > table tr .origin span {margin: 0; font-size:1em; white-space: nowrap;}
 			.monster > table tr .level {text-align: right;}
 			.monster > table tr .xp {text-align: right;}
 			.monster > table tr .book-location {background-color: #46532D; text-align: right; color: #fff;} 
+			.monster.elite > table tr .book-location {background-color: #663399; color: #FFFF00;} 
 				.monster > table tr .book-location {font-family: 'Gentium Book Basic', serif; font-style: italic;}
 
 .monsters-wrapper > h1 {font-family: 'Lato', sans-serif; margin: 0 0 .5em; text-transform: uppercase; border-bottom: .1em solid;}

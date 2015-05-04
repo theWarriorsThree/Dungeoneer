@@ -11,3 +11,12 @@ def getMonsters(cat, subCat=None):
     else:
         monsters = Monster.objects.filter(category=cat,subCategory=subCat)
     return monsters
+
+@register.simple_tag
+def addIntegerSign(num):
+    if(num == ""):
+        return ""
+    if(num > 0):
+        return "+" + str(num)
+    else:
+        return num
