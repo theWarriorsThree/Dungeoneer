@@ -1,0 +1,38 @@
+{% load tags %}
+{% include "dungeoneer/includes/header.html" with pagetitle="Monsters" %}
+	<body id="monstersTemplate">
+		<section id="admin-panel">
+			<nav>
+				<ul>
+					<li><a href="#">Add Blah Blah</a></li>
+					<li><a href="#">Add Blah Blah</a></li>
+					<li><a href="#">Add Blah Blah</a></li>
+				</ul>
+			</nav>
+			<div class="toggle">
+				<a href="#">+</a>
+				<div class="background"></div>
+			</div>
+		</section>
+		<section class="monsters-wrapper">
+        {% for category in categories %}
+		<h1>{{category.name}}</h1>
+            {% getMonsters category.id as catMonsters %}
+            <!--
+            {% for monster in catMonsters %}
+            -->{% include "dungeoneer/includes/monsterTable.html" with powers=monster.powers.all %}<!--
+            {% endfor %}
+            -->
+            {% for subCategory in category.subCategories.all %}
+            <h2>{{subCategory.name}}</h2>
+            {% getMonsters category.id subCategory.id as subCatMonsters %}
+                <!--
+                {% for monster in subCatMonsters %}
+                -->{% include "dungeoneer/includes/monsterTable.html" with powers=monster.powers.all %}<!--
+                {% endfor %}
+                -->
+            {% endfor %}
+        {% endfor %}
+		</section>
+	</body>
+{% include "dungeoneer/includes/footer.html" %}

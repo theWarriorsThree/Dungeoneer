@@ -1,0 +1,163 @@
+				{% load tags %}
+			   <div class="monster">
+                    <table border="0" cellspacing="0">
+                        <tr class="header">
+                            <td class="name">
+                                <h2>{{monster.name}}</h2>
+                            </td>
+                            <td class="level">
+                                <span>Level {{monster.level}} {{monster.get_role_display}}</span>
+                            </td>
+                        </tr>
+                        <tr class="header">
+                            <td class="origin">
+                                <span>{{monster.get_size_display}} {{monster.origin}} {{monster.type}}
+								{% if monster.keywords|length > 0 %}
+									(
+										{% for keyword in monster.keywords.all %}
+											{{keyword}}{% if not forloop.last %}, {% endif %}
+										{% endfor %}
+									)								
+								{% endif %}</span>
+                            </td>
+                            <td class="xp">
+                                <span>XP {{monster.XP}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="initiative">
+                                <strong>Initiative </strong>
+                                <span>{% addIntegerSign monster.initiative|default:"0" %}</span>
+                            </td>
+                            <td class="senses">
+                                <strong>Senses </strong></span>Perception {% addIntegerSign monster.perception|default:"0" %}; {{monster.specialSenses}}</span>
+                            </td>
+                        </tr>
+						{% if monster.aura %}
+                        <tr>
+                            <td class="aura" colspan="2">
+                                <strong>{{monster.aura}}
+								{% if monster.auraKeywords|length > 0 %}
+									(
+										{% for keyword in monster.auraKeywords.all %}
+											{{keyword}}{% if not forloop.last %}, {% endif %}
+										{% endfor %}
+									)								
+								{% endif %}
+								
+								
+								
+								</strong>
+                                <span>aura {{monster.auraRange}}; {{monster.auraEffect}}</span>
+                            </td>
+                        </tr>
+						{% endif %}
+                        <tr>
+                            <td class="hp" colspan="2">
+                                <strong>HP </strong>
+                                <span>{{monster.HP|default:"1"}};</span>
+                                <strong>Bloodied </strong>
+                                <span>{{monster.bloodied|default:"0"}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="defenses" colspan="2">
+                                <strong>AC </strong>
+                                <span>{{monster.AC|default:"0"}};</span>
+                                <strong>Fortitude </strong>
+                                <span>{{monster.fortitude|default:"0"}};</span>
+                                <strong>Reflex </strong>
+                                <span>{{monster.reflex|default:"0"}};</span>
+                                <strong>Will </strong>
+                                <span>{{monster.will|default:"0"}};</span>
+                            </td>
+                        </tr>
+						{% if monster.initiative %}
+                        <tr>
+                            <td class="save" colspan="2">
+                                <strong>Saving Throws </strong>
+                                <span> {% addIntegerSign monster.initiative %}</span>
+                            </td>
+                        </tr>
+						{% endif %}
+                        <tr>
+                            <td class="speed" colspan="2">
+                                <strong>Speed </strong>
+                                <span>{{monster.speed|default:"0"}}{% if monster.specialSpeed %}, {{monster.specialSpeed}}{% endif %}</span>
+                            </td>
+                        </tr>
+						{% if monster.actionPoints %}
+                        <tr>
+                            <td class="ap" colspan="2">
+                                <strong>Action Points </strong>
+                                <span>{{monster.actionPoints}}</span>
+                            </td>
+                        </tr>
+						{% endif %}
+                        {% for power in powers %}
+                        <tr class="dark">
+                            <td class="power-name" colspan="2">
+                                <strong>{{power.name}}</strong>
+                                <span>({{power.actionType}}{% if power.actionType %}; {% endif %}{{power.get_recharge_display}}) 
+								
+								{% if power.keywords|length > 0 %}
+									~
+										{% for keyword in power.keywords.all %}
+											{{keyword}}{% if not forloop.last %}, {% endif %}
+										{% endfor %}
+								{% endif %}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="power-effect" colspan="2">
+                                {{power.powerEffect|safe}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr class="dark">
+                            <td class="alignment">
+                                <strong>Alignment </strong>
+                                <span>{{monster.get_alignment_display|default:"Unaligned"}}</span>
+                            </td>
+                            <td class="languages">
+                                <strong>Languages </strong>
+                                <span>{{monster.get_language_display}}</span>
+                            </td>
+                        </tr>
+                        <tr class="dark">
+                            <td class="defenses" colspan="2">
+                                <strong>Str </strong><span>{{monster.strScore|default:"0"}} ({% addIntegerSign monster.strMod|default:"0" %}),</span>
+                                <strong>Dex </strong><span>{{monster.dexScore|default:"0"}} ({% addIntegerSign monster.dexMod|default:"0" %}),</span>
+                                <strong>Wis </strong><span>{{monster.wisScore|default:"0"}} ({% addIntegerSign monster.wisMod|default:"0" %}),</span>
+                            </td>
+                        </tr>
+                        <tr class="dark">
+                            <td class="defenses" colspan="2">
+                                <strong>Con </strong><span>{{monster.conScore|default:"0"}} ({% addIntegerSign monster.conMod|default:"0" %}),</span>
+                                <strong>Int </strong><span>{{monster.intScore|default:"0"}} ({% addIntegerSign monster.intMod|default:"0" %}),</span>
+                                <strong>Cha </strong><span>{{monster.chaScore|default:"0"}} ({% addIntegerSign monster.chaMod|default:"0" %})</span>
+                            </td>
+                        </tr>
+						{% if monster.equipment %}
+                        <tr>
+                            <td class="equipment" colspan="2">
+                                <strong>Equipment: </strong>
+                                <span>{{monster.equipment}}</span>
+                            </td>
+                        </tr>
+						{% endif %}
+						{% if monster.inventory %}
+                        <tr {% if monster.equipment %}class="dark"{% endif %}>
+                            <td class="inventory" colspan="2">
+                                <strong>Inventory: </strong>
+                                <span>{{monster.inventory}}</span>
+                            </td>
+                        </tr>
+						{% endif %}
+                        <tr>
+                            <td class="book-location" colspan="2">
+                                <span>{{monster.bookReference|default:"Some idiot did not enter a reference... Try MM1?"}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
