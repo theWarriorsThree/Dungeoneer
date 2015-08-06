@@ -24,13 +24,15 @@
             {% endfor %}
             -->
             {% for subCategory in category.subCategories.all %}
-            <h2>{{subCategory.name}}</h2>
-            {% getMonsters category.id subCategory.id as subCatMonsters %}
-                <!--
-                {% for monster in subCatMonsters %}
-                -->{% include "dungeoneer/includes/monsterTable.html" with powers=monster.powers.all %}<!--
-                {% endfor %}
-                -->
+                {% getMonsters category.id subCategory.id as subCatMonsters %}
+                {% if subCatMonsters.count %}
+                    <h2>{{subCategory.name}}</h2>
+                    <!--
+                    {% for monster in subCatMonsters %}
+                    -->{% include "dungeoneer/includes/monsterTable.html" with powers=monster.powers.all %}<!--
+                    {% endfor %}
+                    -->
+                {% endif %}
             {% endfor %}
         {% endfor %}
 		</section>
