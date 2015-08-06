@@ -73,7 +73,6 @@ ROLE_CHOICES = (
     ('MI','Minion'),
     ('SK','Skirmisher'),
     ('SO','Soldier'),
-    ('SL','Solo'),
     ('LE','Leader')
 )
 
@@ -207,6 +206,7 @@ class Monster(models.Model):
     name = models.CharField(max_length=64,unique=True)
     level = models.CharField(max_length=64,blank=True)
     role = models.CharField(max_length=64,choices=ROLE_CHOICES, default='EMPTY',blank=True)
+    solo = models.BooleanField(default=False)
     size = models.CharField(max_length=64,choices=SIZE_CHOICES, default='EMPTY',blank=True)
     origin = models.CharField(max_length=64,blank=True)
     monsterType = models.CharField(max_length=64,blank=True)
