@@ -100,7 +100,7 @@
                                 <strong>{{power.name}}</strong>
                                 <span>
                                 {%if power.actionType or power.recharge%}
-                                    ({{power.actionType}}{% if power.actionType and power.recharge %}; {% endif %}{{power.get_recharge_display}})
+                                    ({{power.get_actionType_display}}{% if power.actionType and power.recharge %}; {% endif %}{{power.get_recharge_display}})
 								{% endif %}
 								{% if power.keywords.count > 0 %}
 									~
