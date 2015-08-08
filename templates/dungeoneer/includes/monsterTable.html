@@ -57,7 +57,11 @@
                                 <strong>HP </strong>
                                 <span>{{monster.HP|default:"1"}};</span>
                                 <strong>Bloodied </strong>
-                                <span>{{monster.bloodied|default:"0"}}</span>
+                                <span>{{monster.bloodied|default:"0"}}
+                                    {% if monster.bloodiedNote %}
+                                        ({{monster.bloodiedNote}})
+                                    {% endif %}
+                                </span>
                             </td>
                         </tr>
                         <tr>

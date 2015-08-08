@@ -222,6 +222,7 @@ class Monster(models.Model):
     auraEffect = models.TextField(blank=True)
     HP = models.IntegerField(max_length=64,null=True,blank=True)
     bloodied = models.IntegerField(max_length=64,null=True,blank=True)
+    bloodiedNote = models.TextField(blank=True)
     AC = models.IntegerField(max_length=64,null=True,blank=True)
     fortitude = models.IntegerField(max_length=64,null=True,blank=True)
     reflex = models.IntegerField(max_length=64,null=True,blank=True)
