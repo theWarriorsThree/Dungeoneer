@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, include, url, handler404, handler500
 from . import views
 
 urlpatterns = patterns('',
@@ -8,3 +8,6 @@ urlpatterns = patterns('',
     url(r'^dm/mm/$', views.monsters),
     #url(r'^dm/player/add',views.edit_user),
 )
+
+handler404 = 'views.handler404'
+handler500 = 'views.handler500'
