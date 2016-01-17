@@ -1,6 +1,8 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
+
 from charactermanager.models import Ability, Campaign, MonsterCategory, Monster
+from charactermanager.forms import CharacterModelForm
 
 from itertools import chain
 
@@ -30,6 +32,7 @@ def campaigns(request):
     return render_to_response('dungeoneer/campaignListTemplate.html', context)
 
 def abilities(request, campaign_name, player_name):
+    get_object_or_404(Character,~Q(enabled=False),slug=player_name)
     context = RequestContext(request)
     context['counter'] = Counter()
     context['name'] = player_name
@@ -38,6 +41,24 @@ def abilities(request, campaign_name, player_name):
     dailies = Ability.objects.filter(character__slug=player_name, recharge="DAILY").order_by('name')
     context['abilities'] = list( chain(atwills, encounters, dailies) )
     return render_to_response('dungeoneer/abilitiesTemplate.html', context)
+
+def edit_user(request, player_name=None):
+    context = RequestContext(request)
+    if(player_name != None):
+        player = Character.objects.filter(slug=player_name)
+    else:
+        player = None
+
+    if request.method == 'GET':
+        form = CharacterModelForm()
+    else:
+        form = CharacterModelForm(player)
+
+    context['player'] = player
+    context['form'] = form
+    return render_to_response('dungeoneer/characterFormTemplate.html', context)
+
+
 
 def monsters(request):
     context = RequestContext(request)

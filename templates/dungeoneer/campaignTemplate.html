@@ -3,6 +3,7 @@
 		<section id="campaign-wrapper">
 
 		{% for player in campaign.characters.all %}
+            {% if player.enabled %}
 			<a href="{% url 'charactermanager.views.abilities' campaign.slug player.slug %}"  class="paper-stack">
 				<div class="top-page">
 					<div class="content">
@@ -14,6 +15,7 @@
 					</div>
 				</div>
 			</a>
+            {% endif %}
 		{% endfor %}
 
 		

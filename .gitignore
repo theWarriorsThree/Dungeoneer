@@ -1,9 +1,11 @@
 #project
 charactermanager/migrations/
 db.sqlite3
-./dungeoneer/
+db.json
+dungeoneer/
 manage.py
 dungeoneerproject/
+media/uploaded/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
