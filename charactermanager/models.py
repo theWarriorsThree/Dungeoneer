@@ -265,7 +265,13 @@ class MonsterPower(models.Model):
     actionType = models.CharField(max_length=64,choices=ACTION_TYPE_CHOICES,blank=True)
     sustain = models.TextField(blank=True)
     recharge = models.CharField(max_length=64,choices=RECHARGE_CHOICES, default='ATWILL',blank=True)
-    rechargeDice = MultiSelectField(choices=( (1,1),(2,2),(3,3),(4,4),(5,5),(6,6) ), blank=True,null=True )
+    rechargeOn = MultiSelectField(choices=( (1,'1 on a d6'),
+                                             (2,'2 on a d6'),
+                                             (3,'3 on a d6'),
+                                             (4,'4 on a d6'),
+                                             (5,'5 on a d6'),
+                                             (6,'6 on a d6'),
+                                            ('bloodied','bloodied') ), blank=True,null=True )
     keywords = models.ManyToManyField('AbilityKeyword',blank=True)
     powerEffect = models.TextField(blank=True)
     monster = models.ForeignKey(Monster,related_name='powers')
