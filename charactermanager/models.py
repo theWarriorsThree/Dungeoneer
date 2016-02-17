@@ -261,7 +261,7 @@ class Monster(models.Model):
 
 class MonsterPower(models.Model):
     powerType = models.CharField(max_length=64,choices=MONSTER_POWER_TYPE_CHOICES, default='EMPTY',blank=True)
-    name = models.CharField(max_length=64,unique=True)
+    name = models.CharField(max_length=64)
     actionType = models.CharField(max_length=64,choices=ACTION_TYPE_CHOICES,blank=True)
     sustain = models.TextField(blank=True)
     recharge = models.CharField(max_length=64,choices=RECHARGE_CHOICES, default='ATWILL',blank=True)
