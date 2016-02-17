@@ -200,6 +200,18 @@ class MonsterKeyword(models.Model):
     
     def __unicode__(self):
         return self.name
+
+class MonsterType(models.Model):
+    name = models.CharField(max_length=16,unique=True)
+    
+    def __unicode__(self):
+        return self.name
+    
+class MonsterOrigin(models.Model):
+    name = models.CharField(max_length=16,unique=True)
+    
+    def __unicode__(self):
+        return self.name
     
 class Monster(models.Model):
     category = models.ForeignKey(MonsterCategory,related_name='monsters')
@@ -210,8 +222,8 @@ class Monster(models.Model):
     solo = models.BooleanField(default=False)
     elite = models.BooleanField(default=False)
     size = models.CharField(max_length=64,choices=SIZE_CHOICES, default='EMPTY',blank=True)
-    origin = models.CharField(max_length=64,blank=True)
-    monsterType = models.CharField(max_length=64,blank=True)
+    origin =  models.ForeignKey(MonsterOrigin,related_name='monsters',null=True,blank=True)
+    monsterType = models.ForeignKey(MonsterType,related_name='monsters',null=True,blank=True)
     keywords = models.ManyToManyField('MonsterKeyword',blank=True)
     XP = models.CharField(max_length=64,blank=True)
     initiative = models.IntegerField(max_length=64,null=True,blank=True)
