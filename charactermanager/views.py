@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.db.models import Q
 
-from charactermanager.models import Ability, Character, Campaign, MonsterCategory, Monster
+from charactermanager.models import Ability, AbilityKeyword, Character, Campaign, MonsterCategory, Monster
 from charactermanager.forms import CharacterModelForm
 
 from itertools import chain
@@ -41,6 +41,10 @@ def abilities(request, campaign_name, player_name):
     encounters = Ability.objects.filter(character__slug=player_name, recharge="ENCOUNTER").order_by('name')
     dailies = Ability.objects.filter(character__slug=player_name, recharge="DAILY").order_by('name')
     context['abilities'] = list( chain(atwills, encounters, dailies) )
+    context['recharges'] = Ability.objects.filter(character__slug=player_name).values_list('recharge', flat=True).distinct()
+    context['actionTypes'] = Ability.objects.filter(character__slug=player_name).values_list('actionType', flat=True).distinct()   
+    keywordIds = Ability.objects.filter(character__slug=player_name).values_list('keywords', flat=True).distinct()
+    context['keywords'] = AbilityKeyword.objects.filter(pk__in=keywordIds)
     return render_to_response('dungeoneer/abilitiesTemplate.html', context)
 
 def edit_user(request, player_name=None):

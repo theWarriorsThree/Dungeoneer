@@ -1,13 +1,13 @@
 {% include "dungeoneer/includes/header.html" with pagetitle="Campaign - "|add:campaign.name %}
 	<body id="campaignTemplate">
 		<section id="campaign-wrapper">
-
 		{% for player in campaign.characters.all %}
             {% if player.enabled %}
 			<a href="{% url 'charactermanager.views.abilities' campaign.slug player.slug %}"  class="paper-stack">
 				<div class="top-page">
 					<div class="content">
 						<h2>{{player.name}}</h2>
+						<span class="player-level">LEVEL: {{player.level}}</span>
 						{% if player.image %}
 						<img src="{{MEDIA_URL}}{{player.image}}">
 						{% endif %}

@@ -124,11 +124,18 @@ class Campaign(models.Model):
 class Character(models.Model):
     name = models.CharField(max_length=64)
     slug = AutoSlugField(populate_from='name', unique=True,editable=True)
+    level = models.IntegerField(default=1)
     enabled = models.BooleanField(default=True)
     image = models.ImageField(upload_to='uploaded/characters/',blank=True,default='')
     abilities = models.ManyToManyField('Ability',blank=True)
     summary = models.TextField(blank=True,default='')
     background = models.TextField(blank=True,default='')
+    strength = models.IntegerField(default=0)
+    constitution = models.IntegerField(default=0)
+    dexterity = models.IntegerField(default=0)
+    intelligence = models.IntegerField(default=0)
+    wisdom = models.IntegerField(default=0)
+    charisma = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.name
