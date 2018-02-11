@@ -130,12 +130,12 @@ class Character(models.Model):
     abilities = models.ManyToManyField('Ability',blank=True)
     summary = models.TextField(blank=True,default='')
     background = models.TextField(blank=True,default='')
-    strength = models.IntegerField(default=0)
-    constitution = models.IntegerField(default=0)
-    dexterity = models.IntegerField(default=0)
-    intelligence = models.IntegerField(default=0)
-    wisdom = models.IntegerField(default=0)
-    charisma = models.IntegerField(default=0)
+    # strength = models.IntegerField(default=0)
+    # constitution = models.IntegerField(default=0)
+    # dexterity = models.IntegerField(default=0)
+    # intelligence = models.IntegerField(default=0)
+    # wisdom = models.IntegerField(default=0)
+    # charisma = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.name
