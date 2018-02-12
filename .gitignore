@@ -6,6 +6,7 @@ dungeoneer/
 manage.py
 dungeoneerproject/
 media/uploaded/
+dungeonenv/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

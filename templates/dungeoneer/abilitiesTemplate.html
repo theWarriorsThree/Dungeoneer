@@ -1,9 +1,11 @@
 {% include "dungeoneer/includes/header.html" with pagetitle="Abilities - "|add:name %}
 	<body id="abilitiesTemplate">
-		<section id="abilities-wrapper">            
+	{% include "dungeoneer/includes/abilityFilters.html" %}
+		<section id="abilities-wrapper">   
+		<span class="cp-ability-count">Showing <span class="cp-ability-count__toggle">X</span> of <span class="cp-ability-count__total">X</span> Abilities</span>         
 		<!--
 		{% for ability in abilities %}
-			--><div class="ability {{ability.get_recharge_display|lower}}">
+			--><div class="ability {{ability.get_recharge_display|lower}}" data-compare="{{ability.recharge}},{{ability.actionType}},{% for keywords in ability.keywords.all %}{{keywords}},{% endfor %}">
 				<table border="0" cellspacing="0">
 					<tr class="header">
 						<td class="name">
