@@ -157,6 +157,11 @@
 						</td>
 					</tr>
 				</table>
+				{% if ability.get_recharge_display = 'Encounter' or ability.get_recharge_display == 'Daily' %}
+				    <div class="ability-used">
+					<span>Ability Used? <input type="checkbox"></span>
+				    </div>
+				{% endif %}
 			</div><!--
 			{% endfor %}
 			-->

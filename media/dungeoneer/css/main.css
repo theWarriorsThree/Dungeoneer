@@ -1,4 +1,5 @@
-body {-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); }
+body {-webkit-tap-highlight-color:  rgba(255, 255, 255, 0);position: relative; transition: all .3s ease; left:0;  }
+body.controls-open {left: 320px;}
 
 strong {font-weight: 700;}
 
@@ -35,9 +36,10 @@ strong {font-weight: 700;}
 .monsters-wrapper > h1 {font-family: 'Lato', sans-serif; margin: 0 0 .5em; text-transform: uppercase; border-bottom: .1em solid;}
 .monsters-wrapper > h2 {font-family: 'Lato', sans-serif; margin: 0 0 .4em; font-size: 1.2em; color: #991111;}
 
-.ability {box-sizing: border-box; display: inline-block; width: 32.7%; margin: .5em .3%; background:#efefef; vertical-align: top; font-size: .8em; page-break-before: always; page-break-after: always;}
+.ability {box-sizing: border-box; display: inline-block; position: relative;width: 32.7%; margin: .5em .3%; background:#efefef; vertical-align: top; font-size: .8em; page-break-before: always; page-break-after: always;}
 	.ability.hide {display: none;}
-    .ability.clicked {border: solid 2px black;}
+    .ability.used {display: none;}
+    .ability.clicked {border: solid 2px yellow;}
     .ability > table {width: 100%; font-size: .9em;}
 		.ability > table  tr {}
 		.ability > table  tr.dark {background-color:#DBDBDB}
@@ -56,10 +58,12 @@ strong {font-weight: 700;}
 				.ability > table tr .keywords li:last-child:after {content: "";}
 			.ability > table tr .book-location {text-align: right; color: #fff;} 
 				.ability > table tr .book-location {font-family: 'Gentium Book Basic', serif; font-style: italic;}
-				
-		.ability.at-will > table tr.header, .ability.at-will > table tr .book-location  {background-color: #008F00;}
-		.ability.encounter > table tr.header, .ability.encounter > table tr .book-location  {background-color: #941300;}
-		.ability.daily > table tr.header, .ability.daily > table tr .book-location  {background-color: #121212;}
+        .ability > .ability-used {display:none;position: absolute;z-index: 101;font-family: 'Lato', sans-serif;left: calc(50% - 56px);top: 100%;width: 100px;padding: 2px 4px;background: #941300;border-radius: 1px;color: #fff;border-left: solid 2px yellow;border-right: solid 2px yellow;border-bottom: solid 2px yellow;}
+            .ability.clicked > .ability-used {display: block;} 
+        
+		.ability.at-will > table tr.header, .ability.at-will > table tr .book-location, .ability.at-will > .ability-used  {background-color: #008F00;}
+		.ability.encounter > table tr.header, .ability.encounter > table tr .book-location, .ability.encounter > .ability-used  {background-color: #941300;}
+		.ability.daily > table tr.header, .ability.daily > table tr .book-location, .ability.daily > .ability-used  {background-color: #121212;}
 				
 		.paper-stack:before, .paper-stack:after, .paper-stack > .top-page { height: 24em; width: 20em;  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.2);  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2);  box-shadow: 0 0 .6em rgba(0,0,0,0.4); background: #FFF: }
 		.paper-stack { position: relative;  display: inline-block;  width: 20em; height: 24em;  color:#000; text-align: left; margin: 2em;}
@@ -124,7 +128,8 @@ strong {font-weight: 700;}
 		.ability.daily > .inner > .row.header  {background-color: #121212;}*/
 
 .cp-ability-controls * {box-sizing: border-box;}
-.cp-ability-controls {font-family: 'Lato', sans-serif; position: fixed;top:0;left:0;right:0;background: #fff;height: 80px;display: flex;justify-content: center;align-items: center;box-shadow: 1px 1px 5px #000;}
+.cp-ability-controls {font-family: 'Lato', sans-serif; position: fixed;top:0;left:0;right:0;height: 80px;box-shadow: 1px 1px 5px #000;z-index: 101;}
+.cp-ability-controls__wrapper {background: #DBDBDB;z-index:109;display: flex;justify-content: center;align-items: center;height:100%;}
 .cp-ability-controls__text {text-align: center;}
 .cp-ability-controls__dropdown {border: solid 1px black;margin: 0 20px;}
 .cp-ability-controls__dropdown fieldset {border: none;padding:0;position: relative;}
@@ -137,6 +142,8 @@ strong {font-weight: 700;}
 .cp-ability-controls__dropdown fieldset ul li label {display: block; width: 100%;}
 .cp-ability-controls__dropdown fieldset ul li input {position: absolute;left:10px; top:0px; -webkit-appearance: none; border: solid 1px #999;height: 20px; width: 20px;margin:0;}
 .cp-ability-controls__dropdown fieldset ul li input:checked:before {content: "✓"; position: absolute; top:0px; left: 3px; display: block; font-size: 15px;}
+.cp-ability-controls__menu-toggle {display: none;}
+.cp-ability-controls__controls-reset {}
 .ability-controls {display:flex;justify-content: space-between;margin: 0 10px;}            
 .ability-controls .toggles {display: flex; flex-wrap: nowrap;}
 .ability-controls .toggle {margin: 0 20px 0 0;}
@@ -148,7 +155,50 @@ strong {font-weight: 700;}
 
 @media only screen and (max-width: 640px) {
     #abilities-wrapper {margin: 10px 0 0;}
-	.cp-ability-controls {position: relative;box-shadow: none;height: auto;flex-wrap: wrap;}
+	.cp-ability-controls {position: fixed;width: 320px; left: -320px;  right: auto; height: 100%; box-shadow: none;height: 100%;transition: all .3s ease; box-shadow: 1px 1px 5px #000;}
+    .cp-ability-controls__wrapper {flex-wrap: wrap;align-content: flex-start;padding: 0 10px; }
+    .controls-open .cp-ability-controls {left:0;}
     .cp-ability-controls__dropdown, .cp-ability-controls__text {width: 100%;margin: 10px auto 0;}
     .cp-ability-controls__dropdown fieldset ul {width: calc(100% + 6px);right:0;left:-3px;}
+    .cp-ability-controls__menu-toggle {display: block;top:10px;right:0;position: absolute;z-index: -1; padding: 15px 0 0; transform: translateX(50%) rotate(90deg);background: #DBDBDB;cursor: pointer;box-shadow: 1px 1px 5px #000;text-align: center;width:80px;height:80px;border-radius: 50%;}
+    .cp-ability-controls__controls-reset {margin: 20px 0 0;}
+}
+
+.cp-attack-workspace {font-family: 'Lato', sans-serif; margin: 85px 0 0; display: flex; flex-wrap: wrap; justify-content: space-evenly;}
+.cp-attack-workspace__weapon {margin: 40px 20px 0;}
+.cp-attack-workspace__tab {font-size: 1.17em;font-weight: bold;text-align: center;}
+.cp-attack-workspace--fixed-left .cp-attack-workspace__tab {right:0;transform: translateX(100%)}
+.cp-attack-workspace--fixed-right .cp-attack-workspace__tab {left:0;transform: translateX(-100%)}
+.cp-attack-workspace__tab img {width: 50px;height:50px;}
+.cp-attack-workspace__tab span {display: block;width: 100%;}
+.cp-attack-workspace__ability-scores {display: none;}
+.cp-attack-workspace__ability-scores td {text-align: center;} 
+.cp-attack-workspace__ability-header {font-weight: bold;}
+.cp-attack-workspace .cp-attack-workspace--fixed {position: fixed; top:0;transition: all .3s ease;background: #DBDBDB;}
+.cp-attack-workspace .cp-attack-workspace--fixed-scores {top:100px;}
+.cp-attack-workspace .cp-attack-workspace--fixed-top {top:140px;}
+.cp-attack-workspace .cp-attack-workspace--fixed-mid {top:180px;}
+.cp-attack-workspace .cp-attack-workspace--fixed-bottom {top:220px;}
+.cp-attack-workspace .cp-attack-workspace--fixed-left {left:0;transform: translateX(-100%);}
+.cp-attack-workspace .cp-attack-workspace--fixed-right {right:0;transform: translateX(100%);}
+.cp-attack-workspace .cp-attack-workspace--fixed-left.open {transform: translateX(0%); z-index:102;}
+.cp-attack-workspace .cp-attack-workspace--fixed-left.open .cp-attack-workspace__tab {box-shadow: none;}
+.cp-attack-workspace .cp-attack-workspace--fixed-right.open {transform: translateX(0%); z-index:102;}
+.cp-attack-workspace .cp-attack-workspace--fixed-right.open .cp-attack-workspace__tab {box-shadow: none;}
+.cp-attack-workspace .cp-attack-workspace__weapon-details {display: flex;align-items: center;}
+.cp-attack-workspace .cp-attack-workspace__weapon-image img {max-width: 100px;width: 100px;height: 75px;}
+.cp-attack-workspace .cp-attack-workspace__weapon-title h3 {margin:0;text-align: center;}
+.cp-attack-workspace .cp-attack-workspace__weapon-title h4 {margin:0;text-align: center;}
+.cp-attack-workspace .cp-attack-workspace__weapon-table td {text-align: center;}
+.cp-attack-workspace .cp-attack-workspace__weapon-table-header td {padding: 0 2px;font-weight: bold;}
+.cp-attack-workspace .cp-attack-workspace__weapon-table-values td {}
+.cp-attack-workspace .cp-attack-workspace__weapon-table-notes {text-align: center;padding: 5px 0 0;}
+.cp-attack-workspace .cp-attack-workspace__ability-scores-select{margin: 0 0 0 20px;}
+
+@media only screen and (max-width: 640px) {
+    .cp-attack-workspace {margin:0 0 40px;}
+    .cp-attack-workspace .cp-attack-workspace--fixed-scores {top:10px;}
+    .cp-attack-workspace .cp-attack-workspace--fixed-top {top:50px;}
+    .cp-attack-workspace .cp-attack-workspace--fixed-mid {top:90px;}
+    .cp-attack-workspace .cp-attack-workspace--fixed-bottom {top:130px;}
 }
