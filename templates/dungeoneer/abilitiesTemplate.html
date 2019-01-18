@@ -116,7 +116,7 @@
 					<tr {% if not counter.increment|divisibleby:"2" %} class="dark" {% endif %}>
 						<td class="effect" colspan="2">
 							<strong>Effect: </strong>
-							<span>{{ability.effect}}</span>
+							<span>{{ability.effect|safe}}</span>
 						</td>
 					</tr>
 					{% endif %}
