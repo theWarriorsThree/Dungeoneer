@@ -133,7 +133,7 @@ strong {font-weight: 700;}
 .cp-ability-controls__text {text-align: center;}
 .cp-ability-controls__dropdown {border: solid 1px black;margin: 0 20px;}
 .cp-ability-controls__dropdown fieldset {border: none;padding:0;position: relative;}
-.cp-ability-controls__dropdown fieldset legend {height: 40px;line-height: 40px;cursor: pointer;padding: 0 28px 0 18px;width: 100%;}
+.cp-ability-controls__dropdown fieldset legend {height: 40px;line-height: 40px;cursor: pointer;padding: 0 28px 0 18px;width: 100%; position:relative;}
 .cp-ability-controls__dropdown fieldset legend:before {content: ""; position: absolute; right:8px;top:calc(50% - 2px); height:0;width:0; border-left: 5px solid transparent;border-right: 5px solid transparent;border-top: 5px solid #000;}
 .cp-ability-controls__dropdown.active fieldset legend:before {transform: rotateX(180deg)}
 .cp-ability-controls__dropdown fieldset ul {display:none;position: absolute;z-index:101;list-style: none;right:-3px; background: #fff;width:200px;padding: 15px;margin:0;border:solid 1px #000;}
