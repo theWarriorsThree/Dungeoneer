@@ -7,15 +7,15 @@ class CampaignAdmin(admin.ModelAdmin):
 class CharacterAdmin(admin.ModelAdmin):
     save_as = True
     filter_horizontal = ('abilities', )
-    
+
 class AbilityAdmin(admin.ModelAdmin):
     save_as = True
     filter_horizontal = ('keywords', )
-    
+
 class MonsterAdmin(admin.ModelAdmin):
     save_as = True
     filter_horizontal = ('keywords','auraKeywords')
-    
+
 class MonsterPowerAdmin(admin.ModelAdmin):
     save_as = True
     filter_horizontal = ('keywords',)

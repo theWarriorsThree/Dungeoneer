@@ -3,9 +3,9 @@
 		<section id="campaign-list-wrapper">
 
 		{% for campaign in campaigns %}
-			<a href="{% url 'charactermanager.views.campaign' campaign.slug %}" class="book">
+			<a href="{% url 'charactermanager:campaign' campaign.slug %}" class="book">
 				<div class="spine" style="background-color:{{campaign.color}};"></div>
-				<div class="cover" style="background-color:{{campaign.color}}; background-image: url('{{MEDIA_URL}}{{campaign.image}}');">
+				<div class="cover" style="background-color:{{campaign.color}}; background-image: url('{{campaign.image.url}}');">
 					<div class="dnd">Dungeons<br>& Dragons</div>
 					<h2 style="background-color:{{campaign.color}};">{{campaign.name}}</h2>
 					<div class="ribbon" style="background-color:{{campaign.color}};">Campaign Book</div>

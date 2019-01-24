@@ -4,3 +4,4 @@ from django import forms
 class CharacterModelForm(forms.ModelForm):
     class Meta:
         model = m.Character
+        fields = '__all__'

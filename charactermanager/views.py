@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.db.models import Q
 
@@ -23,18 +23,18 @@ class Counter:
         return self.count
 
 def campaign(request, campaign_name):
-    context = RequestContext(request)
+    context = {}
     context['campaign'] = get_object_or_404(Campaign,slug=campaign_name)
-    return render_to_response('dungeoneer/campaignTemplate.html', context)
+    return render(request, 'dungeoneer/campaignTemplate.html', context)
 
 def campaigns(request):
-    context = RequestContext(request)
+    context = {}
     context['campaigns'] = Campaign.objects.all().order_by('name')
-    return render_to_response('dungeoneer/campaignListTemplate.html', context)
+    return render(request, 'dungeoneer/campaignListTemplate.html', context)
 
 def abilities(request, campaign_name, player_name):
     get_object_or_404(Character,~Q(enabled=False),slug=player_name)
-    context = RequestContext(request)
+    context = {}
     context['counter'] = Counter()
     context['name'] = player_name
     atwills = Ability.objects.filter(character__slug=player_name, recharge="ATWILL").order_by('name')
@@ -45,7 +45,7 @@ def abilities(request, campaign_name, player_name):
     context['actionTypes'] = Ability.objects.filter(character__slug=player_name).values_list('actionType', flat=True).distinct()   
     keywordIds = Ability.objects.filter(character__slug=player_name).values_list('keywords', flat=True).distinct()
     context['keywords'] = AbilityKeyword.objects.filter(pk__in=keywordIds)
-    return render_to_response('dungeoneer/abilitiesTemplate.html', context)
+    return render(request,'dungeoneer/abilitiesTemplate.html', context)
 
 def edit_user(request, player_name=None):
     context = RequestContext(request)

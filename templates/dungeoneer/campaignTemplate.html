@@ -3,7 +3,7 @@
 		<section id="campaign-wrapper">
 		{% for player in campaign.characters.all %}
             {% if player.enabled %}
-			<a href="{% url 'charactermanager.views.abilities' campaign.slug player.slug %}"  class="paper-stack">
+			<a href="{% url 'charactermanager:abilities' campaign.slug player.slug %}"  class="paper-stack">
 				<div class="top-page">
 					<div class="content">
 						<h2>{{player.name}}</h2>
@@ -11,7 +11,7 @@
 						    <span class="player-level">LEVEL: {{player.level}}</span>
 						{% endif %}
 						{% if player.image %}
-						    <img src="{{MEDIA_URL}}{{player.image}}">
+						    <img src="{{player.image.url}}">
 						{% endif %}
 						{{player.summary|safe}}
 					</div>
